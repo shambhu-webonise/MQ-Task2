@@ -1,0 +1,12 @@
+.gitignore~
+.classpath
+.project
+.springBeans
+.settings/
+MQ-Task2/.classpath
+MQ-Task2/.project
+MQ-Task2/.settings/
+MQ-Task2/target/
+MQ-Task2/.springBeans
+build/
+target/
