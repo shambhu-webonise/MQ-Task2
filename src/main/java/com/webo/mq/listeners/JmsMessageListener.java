@@ -22,16 +22,15 @@ public class JmsMessageListener implements SessionAwareMessageListener<TextMessa
 		ActiveMQTextMessage activeMQTextMessage = new ActiveMQTextMessage();
 		activeMQTextMessage.setText(message.getText());
 		
-		File file = new File("/home/webonise/NM/tmp");
-		if (!file.exists()) {
-			file.mkdirs();
-			
+		String currentUsersHomeDir = System.getProperty("user.home");
+		String mqTempDirectory = String.format("%s%s", currentUsersHomeDir, "/MQ/tmp");
+		File txtFile = new File(mqTempDirectory, message.getJMSMessageID()+ ".txt");
+		if (!txtFile.getParentFile().exists()) {
+			txtFile.getParentFile().mkdirs();
 		}
-		File txtFile = new File("/home/webonise/NM/tmp/", message.getJMSMessageID()+ ".txt");
-		PrintWriter printWriter;
-		try {
-			printWriter = new PrintWriter(txtFile);
-			printWriter.write(message.getText());
+		try(PrintWriter pw = new PrintWriter(txtFile)) {
+			pw.write(message.getText());
+			pw.flush();
 		} catch (FileNotFoundException e) {
 			LOG.error("Error Occured while writing into file: {}", txtFile.getName());
 		}
