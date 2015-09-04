@@ -18,7 +18,7 @@ This is a web project having subscribed with Message Queue(ActiveMQ). Server is 
 7. Open the User Home -> NM -> tmp to see the message file written there
 
 
-####This can be import into the Eclipse or STS by following steps: 
+####This can be imported into the Eclipse or STS by following steps: 
 1. clone the repository
 2. import the project as maven project
 3. integrate Tomcat to Eclipse.STS or any other app server
